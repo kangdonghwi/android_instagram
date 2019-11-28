@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "544000303011",
+    "firebase_url": "https://dongstargram.firebaseio.com",
+    "project_id": "dongstargram",
+    "storage_bucket": "dongstargram.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544000303011:android:3d7626c3e1cdfb721d4416",
+        "android_client_info": {
+          "package_name": "kr.ac.mjc.dongstargram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544000303011-7alekod53ldd27dfsr64a9h32ami8mp1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVH3RxjDCgVGNy6ZdM12e21saNEpHCGd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544000303011-7alekod53ldd27dfsr64a9h32ami8mp1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
