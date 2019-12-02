@@ -27,4 +27,8 @@ class MainActivity : AppCompatActivity() {
         tab.getTabAt(3)?.setIcon(resources.getDrawable(R.drawable.baseline_favorite_border_black_48))
         tab.getTabAt(4)?.setIcon(resources.getDrawable(R.drawable.baseline_person_outline_black_48))
     }
+
+    fun moveTab(position:Int){
+        viewPager.currentItem = position
+    }
 }

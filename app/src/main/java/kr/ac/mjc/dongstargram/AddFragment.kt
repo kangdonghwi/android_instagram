@@ -73,6 +73,7 @@ class AddFragment : Fragment(){
         }
         post.description=descriptionEt.text.toString()
         post.userId =auth.currentUser?.email
+        post.date=Date()
         startLoading()
         storage.getReference().child("post").child(UUID.randomUUID().toString())        //겹치지않게 id값을 만들어줌
             .putFile(imageUri!!)
@@ -86,8 +87,9 @@ class AddFragment : Fragment(){
                             endLoading()
                             descriptionEt.text.clear()
                             imageIv.setImageDrawable(resources.getDrawable(R.mipmap.ic_launcher))
+                            var mainActivity = activity as MainActivity
+                            mainActivity.moveTab(0)
                         }
-
                 }
             }
     }
