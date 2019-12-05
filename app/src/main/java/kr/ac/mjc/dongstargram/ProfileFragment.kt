@@ -13,9 +13,12 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 
 class ProfileFragment : Fragment(){
@@ -23,6 +26,11 @@ class ProfileFragment : Fragment(){
     lateinit var loadingPb :ProgressBar
     lateinit var profileIv :ImageView
     lateinit var emailTv : TextView
+    lateinit var photoRv:RecyclerView
+
+    lateinit var photoAdapter:PhotoAdapter
+
+    var postList=ArrayList<Post>()
 
     lateinit var auth : FirebaseAuth
     lateinit var firestore: FirebaseFirestore
@@ -42,6 +50,7 @@ class ProfileFragment : Fragment(){
         loadingPb = view.findViewById(R.id.loading_pb)
         profileIv = view.findViewById(R.id.profile_iv)
         emailTv = view.findViewById(R.id.email_tv)
+        photoRv = view.findViewById(R.id.photo_rv)
 
         return view
     }
@@ -56,9 +65,27 @@ class ProfileFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {       //layout이 다 그려지고 난 다음
         super.onViewCreated(view, savedInstanceState)
 
+        photoAdapter = PhotoAdapter(context!!,postList)
+        photoRv.adapter=photoAdapter
+        photoRv.layoutManager=GridLayoutManager(context,3)
+
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
         storage= FirebaseStorage.getInstance()
+        postList.clear()    //초기화 해줘야 중복없어짐
+
+        firestore.collection("Post")
+            .whereEqualTo("userId",auth.currentUser?.email)
+            .orderBy("date", Query.Direction.ASCENDING)
+            .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                if(querySnapshot!=null){
+                    for(dc in querySnapshot.documentChanges){   //돌면서 일치하는것을 가져온다
+                        var post=dc.document.toObject(Post::class.java)
+                        postList.add(0,post)
+                    }
+                    photoAdapter.notifyDataSetChanged()
+                }
+            }
 
         startLoading()
         firestore.collection("User").document(auth.currentUser?.email!!)        //느낌표두개의 뜻은 이건 null일 수가 없다

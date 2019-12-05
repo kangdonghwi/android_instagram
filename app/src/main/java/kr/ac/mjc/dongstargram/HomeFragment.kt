@@ -38,6 +38,7 @@ class HomeFragment : Fragment(){
 
         feedRv.adapter= feedAdapter
         feedRv.layoutManager=LinearLayoutManager(context)
+        postList.clear()
 
         firestore.collection("Post").orderBy("date", Query.Direction.ASCENDING)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
