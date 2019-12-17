@@ -19,7 +19,7 @@ import java.util.*
 
 class AddFragment : Fragment(){
 
-    val IMAGE_PICK = 7392
+    val IMAGE_PICK = 7121
 
 
     lateinit var loadingPb: ProgressBar

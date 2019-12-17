@@ -7,6 +7,24 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#4392EE"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="17dp"
+            android:text="dongstargram"
+            android:textColor="#000000" />
+    </androidx.appcompat.widget.Toolbar>
+
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"

@@ -36,7 +36,7 @@ class ProfileFragment : Fragment(){
     lateinit var firestore: FirebaseFirestore
     lateinit var storage :FirebaseStorage
 
-    val IMAGE_PICK =10000
+    val IMAGE_PICK =1999
 
     var user: User? =null       //firebase에서 가져온 유저정보
 
